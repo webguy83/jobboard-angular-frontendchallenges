@@ -1,0 +1,16 @@
+@use "@angular/material" as mat;
+@use "./themes/light";
+@use "./typography/config" as typography;
+
+@include mat.core(typography.$main-typography);
+
+@include mat.all-component-themes(light.$job-board-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Kumbh Sans", sans-serif;
+}

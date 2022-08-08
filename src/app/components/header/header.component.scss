@@ -1,0 +1,17 @@
+.header {
+  background-repeat: no-repeat;
+
+  min-height: 160px;
+
+  &-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1110px;
+    margin: 0 auto;
+    padding-top: 30px;
+    & h1 {
+      margin: 0;
+    }
+  }
+}

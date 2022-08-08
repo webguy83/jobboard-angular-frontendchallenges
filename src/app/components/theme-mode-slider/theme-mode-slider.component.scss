@@ -1,0 +1,59 @@
+$toggleBgWidth: 48px;
+$toggleBgHeight: 24px;
+$selecterDiameter: 14px;
+$selectorPadding: 5px;
+
+:host {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+label {
+  pointer-events: none;
+
+  .input {
+    display: none;
+
+    &:checked + .toggle-wrapper {
+      &:hover {
+        .selector {
+          background-color: #939bf4;
+        }
+      }
+
+      & > .selector {
+        left: $selectorPadding;
+        background-color: #5964e0;
+      }
+    }
+  }
+
+  .toggle-wrapper {
+    position: relative;
+    width: $toggleBgWidth;
+    height: $toggleBgHeight;
+    background-color: #fff;
+    border-radius: 999px;
+    cursor: pointer;
+    pointer-events: all;
+
+    &:hover {
+      .selector {
+        background-color: #939bf4;
+      }
+    }
+
+    .selector {
+      width: $selecterDiameter;
+      height: $selecterDiameter;
+      position: absolute;
+      top: 50%;
+      left: calc(100% - $selectorPadding - $selecterDiameter);
+      transform: translateY(-50%);
+      background-color: #5964e0;
+      transition: left 0.25s ease;
+      border-radius: 50%;
+    }
+  }
+}
