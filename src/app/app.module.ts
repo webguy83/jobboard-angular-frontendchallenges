@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { ThemeModeSliderComponent } from './components/theme-mode-slider/theme-mode-slider.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, ThemeModeSliderComponent],
@@ -14,6 +15,7 @@ import { ThemeModeSliderComponent } from './components/theme-mode-slider/theme-m
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
