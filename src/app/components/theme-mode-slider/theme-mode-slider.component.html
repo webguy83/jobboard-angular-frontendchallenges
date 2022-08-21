@@ -1,6 +1,12 @@
 <img src="../../../assets/desktop/icon-sun.svg" alt="sun" />
 <label for="toggle">
-  <input class="input" type="checkbox" id="toggle" />
+  <input
+    class="input"
+    type="checkbox"
+    id="toggle"
+    [checked]="!(isDark$ | async)"
+    (change)="onSliderChange()"
+  />
   <div class="toggle-wrapper">
     <span class="selector"></span>
   </div>

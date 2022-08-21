@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./palette";
+
+$job-board-dark-primary: mat.define-palette(palette.$md-custom-primary-dark);
+$job-board-dark-accent: mat.define-palette(palette.$md-custom-accent-dark);
+
+@function _define-dark-theme($config) {
+  $theme: mat.define-dark-theme($config);
+  $color: map.get($theme, color);
+  $color: map.merge(
+    $color,
+    (
+      background: palette.$dark-theme-background-palette,
+      foreground: palette.$dark-theme-foreground-palette,
+    )
+  );
+  @return map.merge(
+    $theme,
+    (
+      color: $color,
+    )
+  );
+}
+
+$job-board-dark-theme: _define-dark-theme(
+  (
+    color: (
+      primary: $job-board-dark-primary,
+      accent: $job-board-dark-accent,
+    ),
+  )
+);

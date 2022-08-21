@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 enum DeviceView {
   DESKTOP = 'desktop',
@@ -22,14 +22,16 @@ export class HeaderComponent implements OnInit {
   }
 
   addBreakPoints() {
+    const mobilePoint = '(max-width: 374.98px)';
+    const tabletPoint = '(min-width: 375px) and (max-width: 768px)';
     this.breakpointObserver
-      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .observe([mobilePoint, tabletPoint])
       .subscribe((breakpointState) => {
         const breakpoints = breakpointState.breakpoints;
 
-        if (breakpoints[Breakpoints.XSmall]) {
+        if (breakpoints[mobilePoint]) {
           this.deviceView = DeviceView.MOBILE;
-        } else if (breakpoints[Breakpoints.Small]) {
+        } else if (breakpoints[tabletPoint]) {
           this.deviceView = DeviceView.TABLET;
         } else {
           this.deviceView = DeviceView.DESKTOP;

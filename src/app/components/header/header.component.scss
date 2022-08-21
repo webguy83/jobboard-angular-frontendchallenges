@@ -1,6 +1,10 @@
 .header {
   background-repeat: no-repeat;
 
+  h1 {
+    color: #fff;
+  }
+
   min-height: 160px;
 
   &-info-bar {
@@ -9,7 +13,7 @@
     align-items: center;
     max-width: 1110px;
     margin: 0 auto;
-    padding-top: 30px;
+    padding: 30px 60px;
     & h1 {
       margin: 0;
     }

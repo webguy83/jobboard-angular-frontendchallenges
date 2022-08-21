@@ -1,0 +1,27 @@
+.filter-bar {
+  display: flex;
+  border-radius: 6px;
+  min-height: 80px;
+  align-items: center;
+}
+
+.checkbox-container {
+  display: flex;
+
+  & input {
+    transform: scale(2);
+  }
+}
+
+label {
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+.submit-area {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}

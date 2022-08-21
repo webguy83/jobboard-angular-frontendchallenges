@@ -1,14 +1,33 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "./index" as app;
+@use "./palette";
 
-$job-board-primary: mat.define-palette(app.$md-custom-primary-light);
-$job-board-accent: mat.define-palette(app.$md-custom-accent-light);
-$job-board-theme: mat.define-light-theme(
+$job-board-light-primary: mat.define-palette(palette.$md-custom-primary-light);
+$job-board-light-accent: mat.define-palette(palette.$md-custom-accent-light);
+
+@function _define-light-theme($config) {
+  $theme: mat.define-light-theme($config);
+  $color: map.get($theme, color);
+  $color: map.merge(
+    $color,
+    (
+      background: palette.$light-theme-background-palette,
+      foreground: palette.$light-theme-foreground-palette,
+    )
+  );
+  @return map.merge(
+    $theme,
+    (
+      color: $color,
+    )
+  );
+}
+
+$job-board-light-theme: _define-light-theme(
   (
     color: (
-      primary: $job-board-primary,
-      accent: $job-board-accent,
+      primary: $job-board-light-primary,
+      accent: $job-board-light-accent,
     ),
   )
 );

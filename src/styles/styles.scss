@@ -1,10 +1,19 @@
 @use "@angular/material" as mat;
 @use "./themes/light";
+@use "./themes/dark";
 @use "./typography/config" as typography;
+@use "../app/components/filter-bar/filter-bar-theme" as filterBarTheme;
+
+@use "./custom/directive-styles";
 
 @include mat.core(typography.$main-typography);
+@include mat.core-color(light.$job-board-light-theme);
+@include filterBarTheme.theme(light.$job-board-light-theme);
 
-@include mat.all-component-themes(light.$job-board-theme);
+.dark-theme {
+  @include mat.core-color(dark.$job-board-dark-theme);
+  @include filterBarTheme.theme(dark.$job-board-dark-theme);
+}
 
 html,
 body {
