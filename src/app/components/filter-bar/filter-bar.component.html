@@ -1,11 +1,12 @@
 <div class="filter-bar">
   <app-filter-input
     icon="icon-search"
-    placeholder="Filter by title, companies, expertise…"
+    [placeholder]="searchPlaceHolder"
   ></app-filter-input>
   <app-filter-input
     icon="icon-location"
     placeholder="Filter by location…"
+    style="flex-shrink: 1.2"
   ></app-filter-input>
   <div class="submit-area">
     <div class="checkbox-container">

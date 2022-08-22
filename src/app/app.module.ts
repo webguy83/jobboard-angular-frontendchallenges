@@ -11,15 +11,32 @@ import { HomeComponent } from './components/home/home.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { StyledButtonDirective } from './directives/styled-button.directive';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
+import { JobCardComponent } from './components/job-card/job-card.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ThemeModeSliderComponent, HomeComponent, FilterBarComponent, FilterInputComponent, StyledButtonDirective],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ThemeModeSliderComponent,
+    HomeComponent,
+    FilterBarComponent,
+    FilterInputComponent,
+    StyledButtonDirective,
+    JobCardComponent,
+  ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

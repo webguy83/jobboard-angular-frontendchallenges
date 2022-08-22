@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "frontendmentor-devjobs": {
+      "hosting": {
+        "job-board": [
+          "frontendmentor-devjobs"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "frontendmentor-devjobs"
+  }
+}

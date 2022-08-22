@@ -2,13 +2,13 @@
   display: flex;
   border-radius: 6px;
   min-height: 80px;
-  align-items: center;
 }
 
 .checkbox-container {
   display: flex;
 
   & input {
+    cursor: pointer;
     transform: scale(2);
   }
 }
