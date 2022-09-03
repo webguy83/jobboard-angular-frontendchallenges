@@ -1,6 +1,15 @@
 <app-filter-bar></app-filter-bar>
-<mat-grid-list cols="3">
-  <mat-grid-tile *ngFor="let job of jobs$ | async"
-    ><app-job-card></app-job-card
-  ></mat-grid-tile>
-</mat-grid-list>
+<div class="grid-container">
+  <app-job-card
+    *ngFor="let job of jobs$ | async"
+    [cardData]="{
+      logo: job.logo,
+      logoBackground: job.logoBackground,
+      contract: job.contract,
+      postedAt: job.postedAt,
+      company: job.company,
+      location: job.location,
+      position: job.position
+    }"
+  ></app-job-card>
+</div>

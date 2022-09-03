@@ -1,1 +1,19 @@
-<p>job-card works!</p>
+<ng-container *ngIf="cardData">
+  <div
+    class="logo-container"
+    [ngStyle]="{ backgroundColor: cardData.logoBackground }"
+  >
+    <img
+      src="../../../assets/{{ cardData.logo }}"
+      [alt]="cardData.company"
+      class="icon"
+    />
+  </div>
+  <p>
+    {{ cardData.postedAt }} <span class="divider-dot">.</span>
+    {{ cardData.contract }}
+  </p>
+  <h3>{{ cardData.position }}</h3>
+  <p>{{ cardData.company }}</p>
+  <span class="location">{{ cardData.location }}</span>
+</ng-container>

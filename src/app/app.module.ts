@@ -15,7 +15,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { JobCardComponent } from './components/job-card/job-card.component';
-import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LayoutModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

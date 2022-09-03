@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 80%;
+  min-height: 228px;
+  border-radius: 6px;
+  position: relative;
+  padding: 32px;
+}
+
+.logo-container {
+  position: absolute;
+  top: -25px;
+  left: 32px;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  caret-color: transparent;
+}
+
+.divider-dot {
+  font-size: 40px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.location {
+  margin-top: auto;
+}
