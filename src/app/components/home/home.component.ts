@@ -7,7 +7,7 @@ import { JobsService } from 'src/app/services/jobs.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  jobs$ = this.jobsService.jobs$;
+  jobs$ = this.jobsService.getJobs();
   constructor(private jobsService: JobsService) {}
 
   ngOnInit(): void {}

@@ -13,6 +13,8 @@ import { FilterInputComponent } from './components/filter-input/filter-input.com
 import { StyledButtonDirective } from './directives/styled-button.directive';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { JobCardComponent } from './components/job-card/job-card.component';
 
@@ -28,8 +30,10 @@ import { JobCardComponent } from './components/job-card/job-card.component';
     JobCardComponent,
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
     LayoutModule,

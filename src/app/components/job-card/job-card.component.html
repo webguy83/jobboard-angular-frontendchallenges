@@ -1,4 +1,4 @@
-<ng-container *ngIf="cardData">
+<a class="card-container" *ngIf="cardData">
   <div
     class="logo-container"
     [ngStyle]="{ backgroundColor: cardData.logoBackground }"
@@ -9,11 +9,11 @@
       class="icon"
     />
   </div>
-  <p>
+  <p class="info">
     {{ cardData.postedAt }} <span class="divider-dot">.</span>
     {{ cardData.contract }}
   </p>
-  <h3>{{ cardData.position }}</h3>
-  <p>{{ cardData.company }}</p>
+  <h3 class="card-position-title">{{ cardData.position }}</h3>
+  <p class="info">{{ cardData.company }}</p>
   <span class="location">{{ cardData.location }}</span>
-</ng-container>
+</a>

@@ -1,12 +1,11 @@
-:host {
+.card-container {
   display: flex;
   flex-direction: column;
-  background-color: white;
   height: 80%;
-  min-height: 228px;
   border-radius: 6px;
   position: relative;
   padding: 32px;
+  cursor: pointer;
 }
 
 .logo-container {
@@ -30,4 +29,6 @@
 
 .location {
   margin-top: auto;
+  font-weight: 700;
+  font-size: 14px;
 }

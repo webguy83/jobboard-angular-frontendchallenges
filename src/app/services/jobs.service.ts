@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  Firestore,
+  collectionData,
+  collection,
+  query,
+  limit,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 interface Requirements {
   content: string;
@@ -11,7 +18,7 @@ interface Role {
   items: string[];
 }
 
-interface Jobs {
+interface JobCollection {
   apply: string;
   company: string;
   contract: string;
@@ -26,11 +33,21 @@ interface Jobs {
   website: string;
 }
 
+interface Job extends JobCollection {
+  id: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class JobsService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private readonly firestore: Firestore) {}
 
-  jobs$ = this.firestore.collection<Jobs>('devjobs').valueChanges();
+  getJobs() {
+    const ref = collection(this.firestore, 'devjobs');
+    const q = query(ref, limit(12));
+    return collectionData(q, {
+      idField: 'id',
+    }) as Observable<Job[]>;
+  }
 }

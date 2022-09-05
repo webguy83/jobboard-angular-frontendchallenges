@@ -6,14 +6,17 @@
 
 @use "./custom/directive-styles";
 @use "../app/components/filter-input/filter-input-theme";
+@use "../app/components/job-card/job-card-theme" as jobCardTheme;
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);
 @include filterBarTheme.theme(light.$job-board-light-theme);
+@include jobCardTheme.theme(light.$job-board-light-theme);
 
 .dark-theme {
   @include mat.core-color(dark.$job-board-dark-theme);
   @include filterBarTheme.theme(dark.$job-board-dark-theme);
+  @include jobCardTheme.theme(dark.$job-board-dark-theme);
 }
 
 html,

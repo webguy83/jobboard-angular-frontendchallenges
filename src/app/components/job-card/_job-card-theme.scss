@@ -1,0 +1,42 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../../styles/themes/palette";
+
+$palette: mat.define-palette(palette.$md-custom-primary-light);
+$accent-palette: mat.define-palette(palette.$md-custom-accent-light);
+$color: map.get($palette, 500);
+$accent-color: map.get($accent-palette, 500);
+
+.location {
+  color: $color;
+}
+
+.info {
+  color: $accent-color;
+}
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $bg-palette: map.get($color-config, "background");
+
+  .card-container {
+    background-color: mat.get-color-from-palette(
+      $bg-palette,
+      secondary-background
+    );
+
+    &:hover {
+      .card-position-title {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}
