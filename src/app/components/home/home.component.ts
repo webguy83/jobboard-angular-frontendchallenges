@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { JobsService } from 'src/app/services/jobs.service';
+import { Observable } from 'rxjs';
+import { Job, JobsService } from 'src/app/services/jobs.service';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +9,27 @@ import { JobsService } from 'src/app/services/jobs.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  jobs$ = this.jobsService.getJobs();
-  constructor(private jobsService: JobsService) {}
+  jobs$!: Observable<Job[]>;
+  moreJobs$!: Observable<Job[]>;
 
-  ngOnInit(): void {}
+  hideLoadMoreBtn$!: Observable<boolean>;
+  constructor(
+    private jobsService: JobsService,
+    public loadingService: LoadingService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadJobs();
+    this.hideLoadMoreBtn$ = this.jobsService.noMoreJobsToBeLoaded;
+  }
+
+  loadJobs() {
+    const jobs$ = this.jobsService.getJobs();
+    this.jobs$ = this.loadingService.showLoaderUntilCompleted(jobs$);
+  }
+
+  onLoadMoreBtnClick() {
+    const moreJobs$ = this.jobsService.loadMore();
+    this.moreJobs$ = this.loadingService.showLoaderUntilCompleted(moreJobs$);
+  }
 }

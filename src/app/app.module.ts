@@ -11,12 +11,12 @@ import { HomeComponent } from './components/home/home.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { FilterInputComponent } from './components/filter-input/filter-input.component';
 import { StyledButtonDirective } from './directives/styled-button.directive';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { JobCardComponent } from './components/job-card/job-card.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -28,14 +28,14 @@ import { JobCardComponent } from './components/job-card/job-card.component';
     FilterInputComponent,
     StyledButtonDirective,
     JobCardComponent,
+    LoadingComponent,
   ],
   imports: [
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
+    MatProgressSpinnerModule,
     LayoutModule,
     BrowserAnimationsModule,
     MatButtonModule,
