@@ -31,7 +31,7 @@ export class JobsService {
   public noMoreJobsToBeLoaded = this._hideBtnSubject.asObservable();
   private _colRef = collection(this.firestore, 'devjobs');
   private _numOfLoadedJobs = 0;
-  private _limit = 12;
+  private _limit = 2;
   private _allJobs$!: Observable<Job[]>;
   constructor(private readonly firestore: Firestore) {}
 

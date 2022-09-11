@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { JobCardComponent } from './components/job-card/job-card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     StyledButtonDirective,
     JobCardComponent,
     LoadingComponent,
+    DetailComponent,
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),

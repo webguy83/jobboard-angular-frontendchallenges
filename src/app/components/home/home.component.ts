@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Job } from 'src/app/services/interfaces';
 import { JobsService } from 'src/app/services/jobs.service';
@@ -8,7 +8,6 @@ import { LoadingService } from '../loading/loading.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   jobObservables: Observable<Job[]>[] = [];
