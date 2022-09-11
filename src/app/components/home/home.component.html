@@ -1,29 +1,17 @@
 <app-filter-bar></app-filter-bar>
 <div class="content">
   <div class="grid-container">
-    <app-job-card
-      *ngFor="let job of jobs$ | async"
-      [cardData]="{
-        logo: job.logo,
-        logoBackground: job.logoBackground,
-        contract: job.contract,
-        postedAt: job.postedAt,
-        company: job.company,
-        location: job.location,
-        position: job.position
-      }"
-    ></app-job-card>
-    <ng-container *ngFor="let obs$ of addedObs">
+    <ng-container *ngFor="let jobs$ of jobObservables">
       <app-job-card
-        *ngFor="let addedJob of obs$ | async"
+        *ngFor="let job of jobs$ | async"
         [cardData]="{
-          logo: addedJob.logo,
-          logoBackground: addedJob.logoBackground,
-          contract: addedJob.contract,
-          postedAt: addedJob.postedAt,
-          company: addedJob.company,
-          location: addedJob.location,
-          position: addedJob.position
+          logo: job.logo,
+          logoBackground: job.logoBackground,
+          contract: job.contract,
+          postedAt: job.postedAt,
+          company: job.company,
+          location: job.location,
+          position: job.position
         }"
       ></app-job-card>
     </ng-container>

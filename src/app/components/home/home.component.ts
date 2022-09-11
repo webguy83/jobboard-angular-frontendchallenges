@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { combineLatest, map, merge, Observable } from 'rxjs';
-import { Job, JobsService } from 'src/app/services/jobs.service';
+import { Observable } from 'rxjs';
+import { Job } from 'src/app/services/interfaces';
+import { JobsService } from 'src/app/services/jobs.service';
 import { LoadingService } from '../loading/loading.service';
 
 @Component({
@@ -10,8 +11,7 @@ import { LoadingService } from '../loading/loading.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  jobs$!: Observable<Job[]>;
-  addedObs: Observable<Job[]>[] = [];
+  jobObservables: Observable<Job[]>[] = [];
 
   hideLoadMoreBtn$!: Observable<boolean>;
   constructor(
@@ -25,12 +25,16 @@ export class HomeComponent implements OnInit {
   }
 
   loadJobs() {
-    const jobs$ = this.jobsService.getJobs();
-    this.jobs$ = this.loadingService.showLoaderUntilCompleted(jobs$);
+    const jobs$ = this.jobsService.getInitialJobs();
+    this.jobObservables.push(
+      this.loadingService.showLoaderUntilCompleted(
+        this.loadingService.showLoaderUntilCompleted(jobs$)
+      )
+    );
   }
 
   onLoadMoreBtnClick() {
-    this.addedObs.push(
+    this.jobObservables.push(
       this.loadingService.showLoaderUntilCompleted(this.jobsService.loadMore())
     );
   }

@@ -9,59 +9,39 @@ import {
   startAfter,
   orderBy,
   getDoc,
+  DocumentSnapshot,
+  DocumentData,
 } from '@angular/fire/firestore';
-import { BehaviorSubject, combineLatest } from 'rxjs';
-import { concatMap, from, map, Observable, tap } from 'rxjs';
-
-interface Requirements {
-  content: string;
-  items: string[];
-}
-
-interface Role {
-  content: string;
-  items: string[];
-}
-
-interface JobCollection {
-  apply: string;
-  company: string;
-  contract: string;
-  description: string;
-  index: number;
-  location: string;
-  logo: string;
-  logoBackground: string;
-  position: string;
-  postedAt: string;
-  requirements: Requirements;
-  role: Role;
-  website: string;
-}
-
-export interface Job extends JobCollection {
-  id: string;
-}
+import {
+  BehaviorSubject,
+  combineLatest,
+  concatMap,
+  from,
+  map,
+  Observable,
+  tap,
+} from 'rxjs';
+import { Job } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobsService {
-  private _hideBtnSubject = new BehaviorSubject(false);
+  private _hideBtnSubject = new BehaviorSubject(true);
   public noMoreJobsToBeLoaded = this._hideBtnSubject.asObservable();
   private _colRef = collection(this.firestore, 'devjobs');
   private _numOfLoadedJobs = 0;
-  private _limit = 2;
+  private _limit = 12;
   private _allJobs$!: Observable<Job[]>;
   constructor(private readonly firestore: Firestore) {}
 
-  getJobs() {
+  getInitialJobs() {
     const q = query(this._colRef, limit(this._limit), orderBy('index'));
-
     const data$ = collectionData(q, {
       idField: 'id',
     }).pipe(
       tap((data) => {
+        this._hideBtnSubject.next(false);
         this._numOfLoadedJobs = data.length;
       })
     );
@@ -70,38 +50,44 @@ export class JobsService {
     return data$ as Observable<Job[]>;
   }
 
-  getLastJob() {
+  private _getLastCurrentJob() {
     return this._allJobs$.pipe(map((data) => data.at(-1)!.id));
+  }
+
+  private _queryMoreJobs(lastDocument: DocumentSnapshot<DocumentData>) {
+    const addedItemsQuery = query(
+      this._colRef,
+      limit(this._limit),
+      orderBy('index'),
+      startAfter(lastDocument)
+    );
+    return collectionData(addedItemsQuery, {
+      idField: 'id',
+    });
+  }
+
+  private _adjustNumberOfJobs(docData: DocumentData[]) {
+    this._numOfLoadedJobs += docData.length;
+    if (this._numOfLoadedJobs % this._limit !== 0) {
+      this._hideBtnSubject.next(true);
+    } else {
+      this._hideBtnSubject.next(false);
+    }
+  }
+
+  private _getMoreJobs(id: string) {
+    const docRef = doc(this.firestore, 'devjobs', id);
+    return from(getDoc(docRef)).pipe(
+      concatMap((lastDocument) => this._queryMoreJobs(lastDocument)),
+      tap((docData) => this._adjustNumberOfJobs(docData))
+    );
   }
 
   loadMore() {
     this._hideBtnSubject.next(true);
-    const lastJobId$ = this.getLastJob();
+    const lastJobId$ = this._getLastCurrentJob();
     const latestJobs$ = lastJobId$.pipe(
-      concatMap((id) => {
-        const docRef = doc(this.firestore, 'devjobs', id);
-        return from(getDoc(docRef)).pipe(
-          concatMap((lastDocument) => {
-            const addedItemsQuery = query(
-              this._colRef,
-              limit(this._limit),
-              orderBy('index'),
-              startAfter(lastDocument)
-            );
-            return collectionData(addedItemsQuery, {
-              idField: 'id',
-            });
-          }),
-          tap((data) => {
-            this._numOfLoadedJobs += data.length;
-            if (this._numOfLoadedJobs % this._limit !== 0) {
-              this._hideBtnSubject.next(true);
-            } else {
-              this._hideBtnSubject.next(false);
-            }
-          })
-        );
-      })
+      concatMap((id) => this._getMoreJobs(id))
     ) as Observable<Job[]>;
 
     this._allJobs$ = combineLatest([this._allJobs$, latestJobs$]).pipe(
