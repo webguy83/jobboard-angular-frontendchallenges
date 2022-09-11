@@ -10,8 +10,8 @@ import {
   orderBy,
   getDoc,
 } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
-import { concatMap, from, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { concatMap, from, map, Observable, tap } from 'rxjs';
 
 interface Requirements {
   content: string;
@@ -47,11 +47,12 @@ export interface Job extends JobCollection {
   providedIn: 'root',
 })
 export class JobsService {
-  private _subject = new BehaviorSubject(false);
-  public noMoreJobsToBeLoaded = this._subject.asObservable();
+  private _hideBtnSubject = new BehaviorSubject(false);
+  public noMoreJobsToBeLoaded = this._hideBtnSubject.asObservable();
   private _colRef = collection(this.firestore, 'devjobs');
   private _numOfLoadedJobs = 0;
-  private _limit = 12;
+  private _limit = 2;
+  private _allJobs$!: Observable<Job[]>;
   constructor(private readonly firestore: Firestore) {}
 
   getJobs() {
@@ -65,16 +66,18 @@ export class JobsService {
       })
     );
 
+    this._allJobs$ = data$ as Observable<Job[]>;
     return data$ as Observable<Job[]>;
   }
 
   getLastJob() {
-    return this.getJobs().pipe(map((data) => data.at(-1)!.id));
+    return this._allJobs$.pipe(map((data) => data.at(-1)!.id));
   }
 
   loadMore() {
+    this._hideBtnSubject.next(true);
     const lastJobId$ = this.getLastJob();
-    return lastJobId$.pipe(
+    const latestJobs$ = lastJobId$.pipe(
       concatMap((id) => {
         const docRef = doc(this.firestore, 'devjobs', id);
         return from(getDoc(docRef)).pipe(
@@ -92,11 +95,19 @@ export class JobsService {
           tap((data) => {
             this._numOfLoadedJobs += data.length;
             if (this._numOfLoadedJobs % this._limit !== 0) {
-              this._subject.next(true);
+              this._hideBtnSubject.next(true);
+            } else {
+              this._hideBtnSubject.next(false);
             }
           })
         );
       })
     ) as Observable<Job[]>;
+
+    this._allJobs$ = combineLatest([this._allJobs$, latestJobs$]).pipe(
+      map((arr) => [...arr[0], ...arr[1]])
+    );
+
+    return latestJobs$;
   }
 }

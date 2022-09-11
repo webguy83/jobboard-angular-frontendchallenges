@@ -13,18 +13,20 @@
         position: job.position
       }"
     ></app-job-card>
-    <app-job-card
-      *ngFor="let addedjob of moreJobs$ | async"
-      [cardData]="{
-        logo: addedjob.logo,
-        logoBackground: addedjob.logoBackground,
-        contract: addedjob.contract,
-        postedAt: addedjob.postedAt,
-        company: addedjob.company,
-        location: addedjob.location,
-        position: addedjob.position
-      }"
-    ></app-job-card>
+    <ng-container *ngFor="let obs$ of addedObs">
+      <app-job-card
+        *ngFor="let addedJob of obs$ | async"
+        [cardData]="{
+          logo: addedJob.logo,
+          logoBackground: addedJob.logoBackground,
+          contract: addedJob.contract,
+          postedAt: addedJob.postedAt,
+          company: addedJob.company,
+          location: addedJob.location,
+          position: addedJob.position
+        }"
+      ></app-job-card>
+    </ng-container>
   </div>
   <app-loading></app-loading>
 </div>
