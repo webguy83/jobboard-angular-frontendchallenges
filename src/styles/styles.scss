@@ -2,11 +2,11 @@
 @use "./themes/light";
 @use "./themes/dark";
 @use "./typography/config" as typography;
-@use "../app/components/filter-bar/filter-bar-theme" as filterBarTheme;
+@use "../app/job-search/filter-bar/filter-bar-theme" as filterBarTheme;
 
 @use "./custom/directive-styles";
-@use "../app/components/filter-input/filter-input-theme";
-@use "../app/components/job-card/job-card-theme" as jobCardTheme;
+@use "../app/job-search/filter-input/filter-input-theme";
+@use "../app/job-search/job-card/job-card-theme" as jobCardTheme;
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);

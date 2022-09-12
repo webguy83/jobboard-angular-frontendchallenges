@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { LoadingService } from './components/loading/loading.service';
+import { LoadingService } from './loading/loading.service';
 import { StyleManager } from './style-manager.service';
 
 @Component({
