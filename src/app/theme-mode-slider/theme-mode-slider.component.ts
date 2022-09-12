@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StyleManager } from 'src/app/style-manager.service';
+import { StyleManager } from 'src/app/services/style-manager.service';
 
 @Component({
   selector: 'app-theme-mode-slider',

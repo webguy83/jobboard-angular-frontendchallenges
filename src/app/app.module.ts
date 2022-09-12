@@ -6,21 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { ThemeModeSliderComponent } from './theme-mode-slider/theme-mode-slider.component';
-
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { DetailComponent } from './detail/detail.component';
-import { JobSearchModule } from './job-search/job-search.module';
+import { SharedModule } from './shared/shared.module';
+import { LoadingService } from './shared/loading/loading.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    ThemeModeSliderComponent,
-    DetailComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, ThemeModeSliderComponent],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
@@ -29,9 +23,9 @@ import { JobSearchModule } from './job-search/job-search.module';
     MatProgressSpinnerModule,
     LayoutModule,
     BrowserAnimationsModule,
-    JobSearchModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

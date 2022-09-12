@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadingService } from 'src/app/loading/loading.service';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { Job } from 'src/app/services/interfaces';
 import { JobsService } from 'src/app/services/jobs.service';
 
