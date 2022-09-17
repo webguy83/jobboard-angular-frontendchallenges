@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { Job } from 'src/app/services/interfaces';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-detail-main',
   templateUrl: './detail-main.component.html',
   styleUrls: ['./detail-main.component.scss'],
 })
 export class DetailMainComponent implements OnInit {
-  job!: Job;
+  @Input() job: Job | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.job = this.route.snapshot.data['job'];
-  }
+  ngOnInit(): void {}
 }
