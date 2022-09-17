@@ -19,6 +19,7 @@ import {
   from,
   map,
   Observable,
+  of,
   tap,
 } from 'rxjs';
 import { Job } from './interfaces';
@@ -28,8 +29,9 @@ import { Job } from './interfaces';
 })
 export class JobsService {
   private _hideBtnSubject = new BehaviorSubject(true);
-  public noMoreJobsToBeLoaded = this._hideBtnSubject.asObservable();
-  private _colRef = collection(this.firestore, 'devjobs');
+  public noMoreJobsToBeLoaded$ = this._hideBtnSubject.asObservable();
+  private _dbTableName = 'devjobs';
+  private _colRef = collection(this.firestore, this._dbTableName);
   private _numOfLoadedJobs = 0;
   private _limit = 2;
   private _allJobs$!: Observable<Job[]>;
@@ -48,6 +50,13 @@ export class JobsService {
 
     this._allJobs$ = data$ as Observable<Job[]>;
     return data$ as Observable<Job[]>;
+  }
+
+  getJob(id: string) {
+    const docRef = doc(this.firestore, this._dbTableName, id);
+    return from(getDoc(docRef)).pipe(
+      map((newDoc) => newDoc.data())
+    ) as Observable<Job>;
   }
 
   private _getLastCurrentJob() {
@@ -76,7 +85,7 @@ export class JobsService {
   }
 
   private _getMoreJobs(id: string) {
-    const docRef = doc(this.firestore, 'devjobs', id);
+    const docRef = doc(this.firestore, this._dbTableName, id);
     return from(getDoc(docRef)).pipe(
       concatMap((lastDocument) => this._queryMoreJobs(lastDocument)),
       tap((docData) => this._adjustNumberOfJobs(docData))

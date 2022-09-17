@@ -5,6 +5,7 @@
       <app-job-card
         *ngFor="let job of jobs$ | async"
         [cardData]="{
+          id: job.id,
           logo: job.logo,
           logoBackground: job.logoBackground,
           contract: job.contract,
@@ -21,7 +22,7 @@
 <button
   appStyledButton
   (click)="onLoadMoreBtnClick()"
-  *ngIf="!(loadingService.loading$ | async) && !(hideLoadMoreBtn$ | async)"
+  *ngIf="!(hideLoadMoreBtn$ | async)"
 >
   Load More
 </button>

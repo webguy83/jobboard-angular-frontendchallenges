@@ -6,8 +6,8 @@ import { FilterInputComponent } from './filter-input/filter-input.component';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { JobSearchRoutingModule } from './job-search-routing.module';
-import { StyledButtonDirective } from '../directives/styled-button.directive';
 import { SharedModule } from '../shared/shared.module';
+import { LoadingService } from '../shared/loading/loading.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,6 @@ import { SharedModule } from '../shared/shared.module';
     JobCardComponent,
     FilterInputComponent,
     FilterBarComponent,
-    StyledButtonDirective,
   ],
   imports: [
     CommonModule,
@@ -23,5 +22,6 @@ import { SharedModule } from '../shared/shared.module';
     MatProgressSpinnerModule,
     JobSearchRoutingModule,
   ],
+  providers: [LoadingService],
 })
 export class JobSearchModule {}

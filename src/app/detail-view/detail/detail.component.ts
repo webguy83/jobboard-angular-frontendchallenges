@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Job } from 'src/app/services/interfaces';
 
 @Component({
@@ -7,9 +8,11 @@ import { Job } from 'src/app/services/interfaces';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  job: Job | undefined;
+  job!: Job;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.job = this.route.snapshot.data['job'];
+  }
 }

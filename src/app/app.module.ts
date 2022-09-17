@@ -25,7 +25,7 @@ import { LoadingService } from './shared/loading/loading.service';
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [LoadingService],
   bootstrap: [AppComponent],
+  providers: [LoadingService],
 })
 export class AppModule {}

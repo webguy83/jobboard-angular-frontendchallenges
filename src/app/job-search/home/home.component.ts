@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadingService } from 'src/app/shared/loading/loading.service';
+import { LoadingService } from '../../shared/loading/loading.service';
 import { Job } from 'src/app/services/interfaces';
 import { JobsService } from 'src/app/services/jobs.service';
 
@@ -20,15 +20,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadJobs();
-    this.hideLoadMoreBtn$ = this.jobsService.noMoreJobsToBeLoaded;
+    this.hideLoadMoreBtn$ = this.jobsService.noMoreJobsToBeLoaded$;
   }
 
   loadJobs() {
     const jobs$ = this.jobsService.getInitialJobs();
     this.jobObservables.push(
-      this.loadingService.showLoaderUntilCompleted(
-        this.loadingService.showLoaderUntilCompleted(jobs$)
-      )
+      this.loadingService.showLoaderUntilCompleted(jobs$)
     );
   }
 

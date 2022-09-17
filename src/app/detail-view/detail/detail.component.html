@@ -1,1 +1,19 @@
-<p>detail works! sdkjshk</p>
+<header>
+  <div
+    class="logo-container"
+    [ngStyle]="{ backgroundColor: job.logoBackground }"
+  >
+    <img
+      src="../../../assets/{{ job.logo }}"
+      [alt]="job.company"
+      class="icon"
+    />
+  </div>
+  <div class="info">
+    <div class="info-main">
+      <h2>{{ job.company }}</h2>
+      <p>{{ job.website }}</p>
+    </div>
+    <button appStyledButton>Company Site</button>
+  </div>
+</header>

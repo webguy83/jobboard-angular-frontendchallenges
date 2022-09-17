@@ -1,4 +1,8 @@
-<a class="card-container" *ngIf="cardData">
+<a
+  [routerLink]="['detail', cardData.id]"
+  class="card-container"
+  *ngIf="cardData"
+>
   <div
     class="logo-container"
     [ngStyle]="{ backgroundColor: cardData.logoBackground }"

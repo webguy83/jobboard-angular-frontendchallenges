@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 interface CardData {
+  id: string;
   logo: string;
   logoBackground: string;
   contract: string;

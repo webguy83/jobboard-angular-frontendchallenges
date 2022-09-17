@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  background-color: white;
+}
+
+.logo-container {
+  min-width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .icon {
+    width: 65%;
+  }
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 40px;
+}

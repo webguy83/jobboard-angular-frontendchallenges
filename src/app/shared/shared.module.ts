@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { StyledButtonDirective } from './directives/styled-button.directive';
 import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [LoadingComponent],
+  declarations: [LoadingComponent, StyledButtonDirective],
   imports: [CommonModule, MatProgressSpinnerModule],
-  exports: [LoadingComponent],
+  exports: [LoadingComponent, StyledButtonDirective],
 })
 export class SharedModule {}

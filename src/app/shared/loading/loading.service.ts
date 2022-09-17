@@ -3,33 +3,33 @@ import {
   BehaviorSubject,
   concatMap,
   finalize,
+  first,
   Observable,
   of,
-  take,
   tap,
 } from 'rxjs';
 
 @Injectable()
 export class LoadingService {
-  private loadingSubject = new BehaviorSubject<boolean>(false);
+  private _loadingSubject = new BehaviorSubject<boolean>(false);
 
-  loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  loading$: Observable<boolean> = this._loadingSubject.asObservable();
   constructor() {}
 
   showLoaderUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
     return of(null).pipe(
       tap(() => this.loadingOn()),
       concatMap(() => obs$),
-      take(1),
+      first(),
       finalize(() => this.loadingOff())
     );
   }
 
   loadingOn() {
-    this.loadingSubject.next(true);
+    this._loadingSubject.next(true);
   }
 
   loadingOff() {
-    this.loadingSubject.next(false);
+    this._loadingSubject.next(false);
   }
 }
