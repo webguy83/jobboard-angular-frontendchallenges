@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JobResolver } from '../services/job.resolver';
-import { DetailComponent } from './detail/detail.component';
+import { DetailMainComponent } from './detail-main/detail-main.component';
 
 const routes: Routes = [
   {
     path: ':id',
-    component: DetailComponent,
+    component: DetailMainComponent,
     resolve: {
       job: JobResolver,
     },

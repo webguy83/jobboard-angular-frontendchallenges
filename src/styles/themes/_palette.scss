@@ -178,6 +178,7 @@ $light-theme-background-palette: (
   hover: rgba($darkTextColour, 0.04),
   card: $lightTextColour,
   dialog: $lightTextColour,
+  company-button: rgba(map.get($md-custom-primary-light, 500), 0.1),
   disabled-button: rgba($darkTextColour, 0.12),
   raised-button: $lightTextColour,
   focused-button: $lightTextColour,
@@ -197,6 +198,7 @@ $dark-theme-background-palette: (
   hover: rgba($lightTextColour, 0.04),
   card: map.get($grey-palette, 800),
   dialog: map.get($grey-palette, 800),
+  company-button: rgba($lightTextColour, 0.1),
   disabled-button: rgba($lightTextColour, 0.12),
   raised-button: map.get($grey-palette, 800),
   focused-button: $lightTextColour,
@@ -210,6 +212,7 @@ $dark-theme-background-palette: (
 
 $light-theme-foreground-palette: (
   base: $darkTextColour,
+  company-button: map.get($md-custom-primary-light, 500),
   divider: $darkTextColour,
   dividers: $darkTextColour,
   disabled: $darkTextColour,
@@ -228,6 +231,7 @@ $light-theme-foreground-palette: (
 
 $dark-theme-foreground-palette: (
   base: $lightTextColour,
+  company-button: $lightTextColour,
   divider: $lightTextColour,
   dividers: $lightTextColour,
   disabled: $lightTextColour,

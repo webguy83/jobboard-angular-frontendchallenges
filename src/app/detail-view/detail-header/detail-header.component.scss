@@ -1,12 +1,6 @@
-:host {
-  display: block;
-  max-width: 730px;
-  margin: 0 auto;
-}
-
-header {
+.detail-header {
   display: flex;
-  background-color: white;
+  border-radius: 6px;
 }
 
 .logo-container {
@@ -14,6 +8,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom-left-radius: inherit;
 
   & .icon {
     width: 65%;
@@ -24,5 +19,10 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 40px;
+  padding: 36px;
+}
+
+.company-btn {
+  align-self: center;
+  padding: 15px 25px;
 }

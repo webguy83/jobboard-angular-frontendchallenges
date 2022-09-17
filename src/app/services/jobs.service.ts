@@ -33,7 +33,7 @@ export class JobsService {
   private _dbTableName = 'devjobs';
   private _colRef = collection(this.firestore, this._dbTableName);
   private _numOfLoadedJobs = 0;
-  private _limit = 2;
+  private _limit = 12;
   private _allJobs$!: Observable<Job[]>;
   constructor(private readonly firestore: Firestore) {}
 

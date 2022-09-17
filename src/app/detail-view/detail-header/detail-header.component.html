@@ -1,4 +1,4 @@
-<header>
+<header class="detail-header" *ngIf="job">
   <div
     class="logo-container"
     [ngStyle]="{ backgroundColor: job.logoBackground }"
@@ -11,9 +11,9 @@
   </div>
   <div class="info">
     <div class="info-main">
-      <h2>{{ job.company }}</h2>
-      <p>{{ job.website }}</p>
+      <h2 class="company-title">{{ job.company }}</h2>
+      <p>{{ generateWebsiteStaticText(job.company) }}</p>
     </div>
-    <button appStyledButton>Company Site</button>
+    <button appStyledButton class="company-btn">Company Site</button>
   </div>
 </header>
