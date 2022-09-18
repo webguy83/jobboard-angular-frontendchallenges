@@ -1,0 +1,12 @@
+.detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  margin-top: 40px;
+  border-radius: 6px;
+
+  & .info {
+    margin: 0;
+  }
+}

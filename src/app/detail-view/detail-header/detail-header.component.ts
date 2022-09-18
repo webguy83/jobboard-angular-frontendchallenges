@@ -11,7 +11,7 @@ export class DetailHeaderComponent implements OnInit {
   constructor() {}
 
   generateWebsiteStaticText(companyName: string): string {
-    return `${companyName.toLowerCase()}.com`;
+    return `${companyName.toLowerCase().replace(' ', '')}.com`;
   }
 
   ngOnInit(): void {}

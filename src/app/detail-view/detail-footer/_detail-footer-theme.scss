@@ -2,33 +2,15 @@
 @use "@angular/material" as mat;
 @use "../../../styles/themes/palette";
 
-$palette: mat.define-palette(palette.$md-custom-primary-light);
-$accent-palette: mat.define-palette(palette.$md-custom-accent-light);
-$accent-color: map.get($accent-palette, 500);
-$color: map.get($palette, 500);
-
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
   $bg-palette: map.get($color-config, "background");
 
-  .detail-main-content {
+  .detail-footer {
     background-color: mat.get-color-from-palette(
       $bg-palette,
       secondary-background
     );
-  }
-
-  .description,
-  .roles p,
-  .requirements p,
-  .requirements-list-item,
-  .roles-list-item {
-    color: $accent-color;
-  }
-
-  .roles-list-item::before,
-  .requirements-list-item::marker {
-    color: $color;
   }
 }
 
