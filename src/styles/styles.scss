@@ -8,6 +8,7 @@
 @use "../app/job-search/filter-input/filter-input-theme";
 @use "../app/job-search/job-card/job-card-theme" as jobCardTheme;
 @use "../app/detail-view/detail-header/detail-header-theme" as detailHeaderTheme;
+@use "../app/detail-view/detail-main/detail-main-theme" as detailMainTheme;
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);
@@ -15,12 +16,14 @@
 @include filterBarTheme.theme(light.$job-board-light-theme);
 @include jobCardTheme.theme(light.$job-board-light-theme);
 @include detailHeaderTheme.theme(light.$job-board-light-theme);
+@include detailMainTheme.theme(light.$job-board-light-theme);
 
 .dark-theme {
   @include mat.core-color(dark.$job-board-dark-theme);
   @include filterBarTheme.theme(dark.$job-board-dark-theme);
   @include jobCardTheme.theme(dark.$job-board-dark-theme);
   @include detailHeaderTheme.theme(dark.$job-board-dark-theme);
+  @include detailMainTheme.theme(dark.$job-board-dark-theme);
 }
 
 html,

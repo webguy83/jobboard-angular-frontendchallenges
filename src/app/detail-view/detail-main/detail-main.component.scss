@@ -1,0 +1,60 @@
+.detail-main-content {
+  margin-top: 40px;
+  border-radius: 6px;
+  padding: 36px 48px;
+
+  > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.divider-dot {
+  font-size: 40px;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.location {
+  font-weight: 700;
+}
+
+.description,
+.requirements,
+.roles {
+  margin-top: 40px;
+  line-height: 26px;
+}
+
+.requirements-list {
+  padding-left: 17px;
+
+  &-item-child {
+    padding-left: 25px;
+  }
+}
+
+.requirements-list-item,
+.roles-list-item {
+  margin-top: 10px;
+}
+
+.roles-list {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  padding: 0;
+
+  &-item {
+    display: flex;
+    counter-increment: my-awesome-counter;
+
+    &::before {
+      content: counter(my-awesome-counter);
+      display: inline-block;
+      text-align: center;
+      margin-right: 40px;
+      font-weight: 700;
+    }
+  }
+}

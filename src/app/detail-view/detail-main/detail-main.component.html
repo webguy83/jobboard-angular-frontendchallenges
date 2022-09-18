@@ -1,1 +1,37 @@
-<main>hi</main>
+<main class="detail-main-content" *ngIf="job">
+  <header>
+    <div class="data">
+      <p class="info">
+        {{ job.postedAt }} <span class="divider-dot">.</span>
+        {{ job.contract }}
+      </p>
+      <h1>{{ job.position }}</h1>
+      <span class="location">{{ job.location }}</span>
+    </div>
+    <div class="cta">
+      <button appStyledButton>Apply Now</button>
+    </div>
+  </header>
+  <div class="description">{{ job.description }}</div>
+  <div class="requirements">
+    <h3>Requirements</h3>
+    <p>{{ job.requirements.content }}</p>
+    <ul class="requirements-list">
+      <li
+        class="requirements-list-item"
+        *ngFor="let item of job.requirements.items"
+      >
+        <div class="requirements-list-item-child">{{ item }}</div>
+      </li>
+    </ul>
+  </div>
+  <div class="roles">
+    <h3>What You Will Do</h3>
+    <p>{{ job.role.content }}</p>
+    <ol class="roles-list">
+      <li class="roles-list-item" *ngFor="let item of job.role.items">
+        <span class="roles-list-item-child">{{ item }}</span>
+      </li>
+    </ol>
+  </div>
+</main>
