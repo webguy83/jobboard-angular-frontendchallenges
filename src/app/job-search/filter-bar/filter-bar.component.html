@@ -1,18 +1,27 @@
-<div class="filter-bar">
+<div class="filter-bar" [ngClass]="{ tablet: tabletView }">
   <app-filter-input
+    [hideIcon]="hideInput"
     icon="icon-search"
     [placeholder]="searchPlaceHolder"
   ></app-filter-input>
   <app-filter-input
+    *ngIf="!hideInput"
     icon="icon-location"
     placeholder="Filter by location…"
-    style="flex-shrink: 1.2"
+    [ngStyle]="{
+      flexShrink: tabletView ? 1 : 1.2
+    }"
   ></app-filter-input>
-  <div class="submit-area">
+  <div class="submit-area" *ngIf="!hideInput">
     <div class="checkbox-container">
       <input type="checkbox" value="1" />
-      <label>Full Time Only</label>
+      <label
+        >Full Time
+        <span [ngStyle]="{ display: tabletView ? 'none' : 'inline' }"
+          >Only</span
+        ></label
+      >
     </div>
-    <button appStyledButton>Search</button>
+    <button class="filter-search-btn" appStyledButton>Search</button>
   </div>
 </div>

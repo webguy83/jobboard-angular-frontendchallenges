@@ -8,7 +8,7 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 export class FilterInputComponent implements OnInit {
   @HostBinding('class') className = 'filter-input-container';
   constructor() {}
-
+  @Input() hideIcon = false;
   @Input() icon = '';
   @Input() placeholder = '';
   sourceURL = '';

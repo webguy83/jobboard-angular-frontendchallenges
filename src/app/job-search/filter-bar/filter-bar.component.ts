@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-bar.component.scss'],
 })
 export class FilterBarComponent implements OnInit {
-  searchPlaceHolder = '';
+  searchPlaceHolder = 'Filter by title, companies, expertise...';
+  tabletView = false;
+  hideInput = false;
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
@@ -15,20 +17,26 @@ export class FilterBarComponent implements OnInit {
   }
 
   addBreakPoints() {
-    const mobilePoint = '(max-width: 374.98px)';
-    const tabletPoint = '(min-width: 375px) and (max-width: 900px)';
+    const smallerTablePoint = '(max-width: 750px)';
+    const tabletPoint = '(max-width: 900px)';
 
     this.breakpointObserver
-      .observe([mobilePoint, tabletPoint])
+      .observe([smallerTablePoint, tabletPoint])
       .subscribe((breakpointState) => {
         const breakpoints = breakpointState.breakpoints;
 
-        if (breakpoints[mobilePoint]) {
+        if (breakpoints[tabletPoint]) {
           this.searchPlaceHolder = 'Filter by title...';
-        } else if (breakpoints[tabletPoint]) {
-          this.searchPlaceHolder = 'Filter by title...';
+          this.tabletView = true;
         } else {
           this.searchPlaceHolder = 'Filter by title, companies, expertise...';
+          this.tabletView = false;
+        }
+
+        if (breakpoints[smallerTablePoint]) {
+          this.hideInput = true;
+        } else {
+          this.hideInput = false;
         }
       });
   }

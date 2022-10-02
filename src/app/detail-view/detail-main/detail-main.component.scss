@@ -8,6 +8,33 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  &.mobile {
+    padding: 36px 24px;
+  }
+
+  &.tablet {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .cta {
+        align-self: stretch;
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+
+    .data {
+      margin-bottom: 60px;
+    }
+  }
 }
 
 .divider-dot {

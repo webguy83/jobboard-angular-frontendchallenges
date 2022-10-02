@@ -1,4 +1,8 @@
-<main class="detail-main-content" *ngIf="job">
+<main
+  class="detail-main-content"
+  [ngClass]="{ tablet: tabletView, mobile: mobileView }"
+  *ngIf="job"
+>
   <header>
     <div class="data">
       <p class="info">

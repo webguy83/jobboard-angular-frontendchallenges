@@ -1,2 +1,7 @@
-<img class="search-icon" [src]="sourceURL" [alt]="icon" />
-<input class="search-field" type="text" [placeholder]="placeholder" />
+<img *ngIf="!hideIcon" class="search-icon" [src]="sourceURL" [alt]="icon" />
+<input
+  class="search-field"
+  type="text"
+  [placeholder]="placeholder"
+  [ngStyle]="{ paddingLeft: hideIcon ? '1.5em' : '3.5em' }"
+/>

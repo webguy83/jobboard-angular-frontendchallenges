@@ -22,8 +22,8 @@ export class HeaderComponent implements OnInit {
   }
 
   addBreakPoints() {
-    const mobilePoint = '(max-width: 374.98px)';
-    const tabletPoint = '(min-width: 375px) and (max-width: 768px)';
+    const mobilePoint = '(max-width: 375px)';
+    const tabletPoint = '(min-width: 375.01px) and (max-width: 768px)';
     this.breakpointObserver
       .observe([mobilePoint, tabletPoint])
       .subscribe((breakpointState) => {

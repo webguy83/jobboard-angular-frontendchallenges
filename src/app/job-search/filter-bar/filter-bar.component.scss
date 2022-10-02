@@ -2,6 +2,12 @@
   display: flex;
   border-radius: 6px;
   min-height: 80px;
+
+  &.tablet {
+    .filter-search-btn {
+      padding: 15px;
+    }
+  }
 }
 
 .checkbox-container {

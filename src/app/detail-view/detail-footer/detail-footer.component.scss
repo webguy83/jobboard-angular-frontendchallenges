@@ -9,4 +9,15 @@
   & .info {
     margin: 0;
   }
+
+  &.mobile {
+    .data {
+      display: none;
+    }
+
+    .cta,
+    button {
+      width: 100%;
+    }
+  }
 }

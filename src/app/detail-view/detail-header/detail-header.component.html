@@ -1,4 +1,4 @@
-<header class="detail-header" *ngIf="job">
+<header class="detail-header" [ngClass]="{ mobile: mobileView }" *ngIf="job">
   <div
     class="logo-container"
     [ngStyle]="{ backgroundColor: job.logoBackground }"
