@@ -1,6 +1,13 @@
 <app-filter-bar></app-filter-bar>
 <div class="content">
-  <div class="grid-container">
+  <div
+    class="grid-container"
+    [ngStyle]="{
+      gridTemplateColumns: mobileView
+        ? 'repeat(auto-fill, minmax(150px, 1fr))'
+        : ''
+    }"
+  >
     <ng-container *ngFor="let jobs$ of jobObservables">
       <app-job-card
         *ngFor="let job of jobs$ | async"

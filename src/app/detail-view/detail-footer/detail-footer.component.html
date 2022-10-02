@@ -1,4 +1,9 @@
-<footer class="detail-footer" [ngClass]="{ mobile: mobileView }" *ngIf="job">
+<footer
+  class="detail-footer"
+  [ngClass]="{ mobile: tabletView }"
+  [ngStyle]="{ padding: mobileView ? '24px 24px' : '' }"
+  *ngIf="job"
+>
   <div class="data">
     <h3>{{ job.position }}</h3>
     <p class="info">{{ job.company }}</p>

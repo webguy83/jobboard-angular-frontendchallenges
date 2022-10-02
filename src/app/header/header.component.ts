@@ -14,6 +14,8 @@ enum DeviceView {
 })
 export class HeaderComponent implements OnInit {
   deviceView: DeviceView = DeviceView.DESKTOP;
+  mobileView = false;
+  shrinkPadding = false;
   currentheaderImgUrl = '';
   constructor(private breakpointObserver: BreakpointObserver) {}
 
@@ -24,17 +26,26 @@ export class HeaderComponent implements OnInit {
   addBreakPoints() {
     const mobilePoint = '(max-width: 375px)';
     const tabletPoint = '(min-width: 375.01px) and (max-width: 768px)';
+    const largerTabletPoint = '(min-width: 375.01px) and (max-width: 865px)';
     this.breakpointObserver
-      .observe([mobilePoint, tabletPoint])
+      .observe([mobilePoint, tabletPoint, largerTabletPoint])
       .subscribe((breakpointState) => {
         const breakpoints = breakpointState.breakpoints;
 
         if (breakpoints[mobilePoint]) {
           this.deviceView = DeviceView.MOBILE;
+          this.mobileView = true;
         } else if (breakpoints[tabletPoint]) {
           this.deviceView = DeviceView.TABLET;
         } else {
           this.deviceView = DeviceView.DESKTOP;
+          this.mobileView = false;
+        }
+
+        if (breakpoints[largerTabletPoint]) {
+          this.shrinkPadding = true;
+        } else {
+          this.shrinkPadding = false;
         }
         this.currentheaderImgUrl = `url(../../../assets/${this.deviceView}/bg-pattern-header.svg)`;
       });
