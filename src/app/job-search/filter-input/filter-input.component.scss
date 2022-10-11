@@ -27,3 +27,28 @@
   left: 1.25rem;
   font-size: 1.3em;
 }
+
+.search-assets {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.filter-btn-container {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-btn-mobile {
+  padding: 0 15px;
+  height: 100%;
+
+  & img {
+    filter: saturate(1) brightness(390%);
+    width: 20px;
+    height: 20px;
+  }
+}
