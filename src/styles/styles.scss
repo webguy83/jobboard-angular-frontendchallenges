@@ -5,7 +5,6 @@
 @use "../app/job-search/filter-bar/filter-bar-theme" as filterBarTheme;
 
 @use "./custom/directive-styles";
-@use "../app/job-search/filter-input/filter-input-theme" as filterInputTheme;
 @use "../app/job-search/job-card/job-card-theme" as jobCardTheme;
 @use "../app/detail-view/detail-header/detail-header-theme" as detailHeaderTheme;
 @use "../app/detail-view/detail-main/detail-main-theme" as detailMainTheme;
@@ -19,7 +18,6 @@
 @include detailHeaderTheme.theme(light.$job-board-light-theme);
 @include detailMainTheme.theme(light.$job-board-light-theme);
 @include detailFooterTheme.theme(light.$job-board-light-theme);
-@include filterInputTheme.theme(light.$job-board-light-theme);
 
 .dark-theme {
   @include mat.core-color(dark.$job-board-dark-theme);
@@ -28,7 +26,6 @@
   @include detailHeaderTheme.theme(dark.$job-board-dark-theme);
   @include detailMainTheme.theme(dark.$job-board-dark-theme);
   @include detailFooterTheme.theme(dark.$job-board-dark-theme);
-  @include filterInputTheme.theme(dark.$job-board-dark-theme);
 }
 
 html,

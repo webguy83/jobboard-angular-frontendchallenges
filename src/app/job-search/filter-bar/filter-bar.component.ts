@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-bar',
@@ -10,10 +11,23 @@ export class FilterBarComponent implements OnInit {
   searchPlaceHolder = 'Filter by title, companies, expertise...';
   tabletView = false;
   hideInput = false;
-  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  filterInputForm = this.fb.group({
+    filterTitle: [''],
+    filterLocation: [''],
+    fullTime: [false],
+  });
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.addBreakPoints();
+  }
+
+  onSubmit() {
+    console.log(this.filterInputForm.value);
   }
 
   addBreakPoints() {
