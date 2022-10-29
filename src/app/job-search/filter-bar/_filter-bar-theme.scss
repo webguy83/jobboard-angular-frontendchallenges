@@ -13,6 +13,7 @@ $alpha: rgba($bg-color, 0.2);
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
   $bg-palette: map.get($color-config, "background");
+  $fg-palette: map.get($color-config, "foreground");
   $primaryConfig: map.get($color-config, "primary");
   $primaryColor: map.get($primaryConfig, 500);
 
@@ -26,6 +27,10 @@ $alpha: rgba($bg-color, 0.2);
       secondary-background
     );
     caret-color: $primaryColor;
+
+    path:hover {
+      fill: rgba(mat.get-color-from-palette($fg-palette, base), 0.7);
+    }
   }
 }
 

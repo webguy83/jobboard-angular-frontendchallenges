@@ -1,6 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
 
 @Component({
   selector: 'app-filter-bar',
@@ -11,19 +13,27 @@ export class FilterBarComponent implements OnInit {
   searchPlaceHolder = 'Filter by title, companies, expertise...';
   tabletView = false;
   hideInput = false;
+  sample: any;
 
   filterInputForm = this.fb.group({
     filterTitle: [''],
     filterLocation: [''],
-    fullTime: [false],
+    fullTimeOnly: [false],
   });
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.addBreakPoints();
+  }
+
+  openFilterModal() {
+    this.dialog.open(FilterDialogComponent, {
+      data: { fg: this.filterInputForm },
+    });
   }
 
   onSubmit() {
@@ -32,7 +42,7 @@ export class FilterBarComponent implements OnInit {
 
   addBreakPoints() {
     const smallerTablePoint = '(max-width: 750px)';
-    const tabletPoint = '(max-width: 900px)';
+    const tabletPoint = '(max-width: 970px)';
 
     this.breakpointObserver
       .observe([smallerTablePoint, tabletPoint])
