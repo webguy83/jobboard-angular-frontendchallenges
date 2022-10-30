@@ -35,6 +35,7 @@ export class FilterBarComponent implements OnInit {
     this.dialog.open(FilterDialogComponent, {
       data: { fg: this.filterInputForm },
       panelClass: 'dialog-popup',
+      backdropClass: 'dialog-popup-backdrop',
     });
   }
 

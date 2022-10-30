@@ -22,6 +22,10 @@ export class FilterDialogComponent implements OnInit, OnDestroy {
     );
   }
 
+  onSubmit() {
+    console.log(this.data.fg.value);
+  }
+
   ngOnDestroy(): void {
     this._sub?.unsubscribe();
   }

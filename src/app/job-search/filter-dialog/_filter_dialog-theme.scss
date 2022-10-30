@@ -9,3 +9,14 @@ $alpha: rgba($bg-color, 0.2);
 .location-input {
   border-bottom: 1px solid $alpha;
 }
+
+.dialog-popup {
+  &-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  mat-dialog-container {
+    padding: 0;
+    box-shadow: none;
+  }
+}
