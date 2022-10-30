@@ -1,4 +1,9 @@
 <form [formGroup]="data.fg">
+  <app-custom-input
+    icon="icon-location"
+    placeholder="Filter by location…"
+    formControlName="filterLocation"
+  ></app-custom-input>
   <app-custom-checkbox formControlName="fullTimeOnly">
     <div>Full Time Only</div>
   </app-custom-checkbox>
