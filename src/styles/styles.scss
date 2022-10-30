@@ -10,7 +10,7 @@
 @use "../app/detail-view/detail-footer/detail-footer-theme" as detailFooterTheme;
 @use "../app/job-search/custom-checkbox/custom-checkbox-theme" as
   customCheckboxTheme;
-@use "../app/job-search/custom-input/custom-input-theme";
+@use "../app/job-search/filter-dialog/filter_dialog-theme";
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);
@@ -42,4 +42,8 @@ body {
 body {
   margin: 0;
   font-family: "Kumbh Sans", sans-serif;
+}
+
+.dialog-popup mat-dialog-container {
+  padding: 0;
 }

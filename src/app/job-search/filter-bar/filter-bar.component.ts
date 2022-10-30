@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
@@ -10,6 +10,7 @@ import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component'
   styleUrls: ['./filter-bar.component.scss'],
 })
 export class FilterBarComponent implements OnInit {
+  @HostBinding('class') className = 'filter-bar-container';
   searchPlaceHolder = 'Filter by title, companies, expertise...';
   tabletView = false;
   hideInput = false;
@@ -33,6 +34,7 @@ export class FilterBarComponent implements OnInit {
   openFilterModal() {
     this.dialog.open(FilterDialogComponent, {
       data: { fg: this.filterInputForm },
+      panelClass: 'dialog-popup',
     });
   }
 

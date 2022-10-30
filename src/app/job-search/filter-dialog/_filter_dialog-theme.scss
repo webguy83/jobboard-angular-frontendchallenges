@@ -6,6 +6,6 @@ $accentPalette: mat.define-palette(palette.$md-custom-accent-light);
 $bg-color: map.get($accentPalette, 500);
 $alpha: rgba($bg-color, 0.2);
 
-.filter-input-container {
-  border-right: 1px solid $alpha;
+.location-input {
+  border-bottom: 1px solid $alpha;
 }

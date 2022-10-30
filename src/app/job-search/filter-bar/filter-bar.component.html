@@ -9,6 +9,7 @@
     [placeholder]="searchPlaceHolder"
     formControlName="filterTitle"
     [hideIcon]="hideInput"
+    [ngStyle]="{ borderRight: hideInput ? 'none' : '' }"
   >
     <div class="search-assets" *ngIf="hideInput">
       <button type="button" class="filter-btn" (click)="openFilterModal()">
