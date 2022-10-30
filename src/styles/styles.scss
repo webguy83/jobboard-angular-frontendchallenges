@@ -8,7 +8,9 @@
 @use "../app/detail-view/detail-header/detail-header-theme" as detailHeaderTheme;
 @use "../app/detail-view/detail-main/detail-main-theme" as detailMainTheme;
 @use "../app/detail-view/detail-footer/detail-footer-theme" as detailFooterTheme;
-@use "../app/custom-checkbox/custom-checkbox-theme" as customCheckboxTheme;
+@use "../app/job-search/custom-checkbox/custom-checkbox-theme" as
+  customCheckboxTheme;
+@use "../app/job-search/custom-input/custom-input-theme";
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);

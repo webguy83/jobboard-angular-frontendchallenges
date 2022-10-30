@@ -1,0 +1,9 @@
+<img *ngIf="!hideIcon" class="search-icon" [src]="iconUrl" [alt]="icon" />
+<input
+  class="search-field"
+  type="text"
+  [placeholder]="placeholder"
+  [ngModel]="value"
+  (ngModelChange)="onModelChange($event)"
+/>
+<ng-content></ng-content>

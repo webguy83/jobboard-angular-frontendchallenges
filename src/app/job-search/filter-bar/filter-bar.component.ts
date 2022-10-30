@@ -42,7 +42,7 @@ export class FilterBarComponent implements OnInit {
 
   addBreakPoints() {
     const smallerTablePoint = '(max-width: 750px)';
-    const tabletPoint = '(max-width: 970px)';
+    const tabletPoint = '(max-width: 900px)';
 
     this.breakpointObserver
       .observe([smallerTablePoint, tabletPoint])

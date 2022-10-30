@@ -22,40 +22,9 @@ label {
   padding: 0 20px;
 }
 
-.filter-input-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-::placeholder {
-  font-family: inherit;
-}
-
-.search-field {
-  width: 100%;
-  padding: 1.2em 0 1.2em 3.5em;
-  border: none;
-  outline: none;
-  background-color: inherit;
-  color: inherit;
-  font-size: 16px;
-  font-family: inherit;
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 1.25rem;
-  font-size: 1.3em;
-}
-
 .search-assets {
   display: flex;
   align-items: center;
-  padding: 15px;
   justify-content: space-between;
   gap: 20px;
 }
@@ -71,8 +40,8 @@ label {
 }
 
 .search-btn-mobile {
-  padding: 0 15px;
-  height: 100%;
+  padding: 14px;
+  display: flex;
 
   & img {
     filter: saturate(1) brightness(390%);

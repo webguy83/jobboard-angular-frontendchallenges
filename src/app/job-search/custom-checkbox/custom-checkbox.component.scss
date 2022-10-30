@@ -3,7 +3,6 @@
   display: flex;
   flex-flow: row-reverse;
   align-items: center;
-  gap: 20px;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -11,15 +10,15 @@
 }
 
 .checkbox-container input {
-  display: none;
+  visibility: hidden;
 }
 
 .checkmark {
   position: relative;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  min-height: 25px;
+  min-width: 25px;
   border-radius: 3px;
   transition: 0.3s;
 }

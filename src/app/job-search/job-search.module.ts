@@ -10,7 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LoadingService } from '../shared/loading/loading.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
-import { CustomCheckboxComponent } from '../custom-checkbox/custom-checkbox.component';
+import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
+import { CustomInputComponent } from './custom-input/custom-input.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CustomCheckboxComponent } from '../custom-checkbox/custom-checkbox.comp
     FilterBarComponent,
     FilterDialogComponent,
     CustomCheckboxComponent,
+    CustomInputComponent,
   ],
   imports: [
     CommonModule,

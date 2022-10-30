@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../../styles/themes/palette";
+@use "../../../styles/themes/palette";
 
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);

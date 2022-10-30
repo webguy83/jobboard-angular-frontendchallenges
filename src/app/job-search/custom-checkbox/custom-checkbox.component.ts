@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CustomCheckboxComponent implements ControlValueAccessor {
   checked: boolean = false;
-  onChange = (_checked: boolean) => {};
+  onChange = (_e: any) => {};
   onTouch = () => {};
 
   registerOnChange(fn: any): void {
@@ -30,7 +30,7 @@ export class CustomCheckboxComponent implements ControlValueAccessor {
     this.checked = checked;
   }
 
-  onModelChange(e: boolean) {
+  onModelChange(e: any) {
     this.checked = e;
     this.onChange(e);
   }

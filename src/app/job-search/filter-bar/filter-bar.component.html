@@ -4,20 +4,12 @@
   [formGroup]="filterInputForm"
   (ngSubmit)="onSubmit()"
 >
-  <div class="filter-input-container">
-    <img
-      *ngIf="!hideInput"
-      class="search-icon"
-      src="../../../assets/desktop/icon-search.svg"
-      alt="icon-search"
-    />
-    <input
-      class="search-field"
-      type="text"
-      [placeholder]="searchPlaceHolder"
-      formControlName="filterTitle"
-      [ngStyle]="{ paddingLeft: hideInput ? '1.5em' : '3.5em' }"
-    />
+  <app-custom-input
+    icon="icon-search"
+    [placeholder]="searchPlaceHolder"
+    formControlName="filterTitle"
+    [hideIcon]="hideInput"
+  >
     <div class="search-assets" *ngIf="hideInput">
       <button type="button" class="filter-btn" (click)="openFilterModal()">
         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
@@ -32,21 +24,13 @@
         <img src="../../../assets/desktop/icon-search.svg" alt="icon-search" />
       </button>
     </div>
-  </div>
-  <div class="filter-input-container" *ngIf="!hideInput">
-    <img
-      class="search-icon"
-      src="../../../assets/desktop/icon-location.svg"
-      alt="icon-location"
-    />
-    <input
-      class="search-field"
-      type="text"
-      placeholder="Filter by location…"
-      formControlName="filterLocation"
-      [ngStyle]="{ paddingLeft: hideInput ? '1.5em' : '3.5em' }"
-    />
-  </div>
+  </app-custom-input>
+  <app-custom-input
+    icon="icon-location"
+    placeholder="Filter by location…"
+    formControlName="filterLocation"
+    *ngIf="!hideInput"
+  ></app-custom-input>
   <div class="submit-area" *ngIf="!hideInput">
     <app-custom-checkbox formControlName="fullTimeOnly">
       <div>
@@ -56,7 +40,6 @@
         >
       </div>
     </app-custom-checkbox>
-
     <button
       type="submit"
       (ngSubmit)="onSubmit()"
