@@ -8,10 +8,12 @@ interface Role {
   items: string[];
 }
 
+type Contract = 'Full Time' | 'Part Time' | 'Freelance';
+
 interface JobCollection {
   apply: string;
   company: string;
-  contract: string;
+  contract: Contract;
   description: string;
   index: number;
   location: string;
@@ -26,4 +28,10 @@ interface JobCollection {
 
 export interface Job extends JobCollection {
   id: string;
+}
+
+export interface FilteredData {
+  position: string;
+  location: string;
+  fullTimeOnly: boolean;
 }

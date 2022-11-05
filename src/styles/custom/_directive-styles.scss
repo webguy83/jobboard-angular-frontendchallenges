@@ -19,7 +19,12 @@ $bg-color-hover: map.get($palette, 300);
   transition: 0.3s;
   white-space: nowrap;
 
-  &:hover {
+  &:hover:enabled {
     background-color: $bg-color-hover;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
   }
 }

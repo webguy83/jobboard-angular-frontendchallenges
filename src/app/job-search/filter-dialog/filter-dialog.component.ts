@@ -1,10 +1,11 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
 interface DialogData {
   fg: FormGroup;
+  submitFn: () => void;
 }
 
 @Component({
@@ -14,7 +15,10 @@ interface DialogData {
 })
 export class FilterDialogComponent implements OnInit, OnDestroy {
   private _sub: Subscription | undefined;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private _dialogRef: MatDialogRef<FilterDialogComponent>
+  ) {}
 
   ngOnInit(): void {
     this._sub = this.data.fg.valueChanges.subscribe((values) =>
@@ -23,7 +27,7 @@ export class FilterDialogComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.data.fg.value);
+    this._dialogRef.close(this.data.fg.value);
   }
 
   ngOnDestroy(): void {

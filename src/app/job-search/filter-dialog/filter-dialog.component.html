@@ -2,13 +2,13 @@
   <app-custom-input
     icon="icon-location"
     placeholder="Filter by location…"
-    formControlName="filterLocation"
+    formControlName="location"
     class="location-input"
   ></app-custom-input>
   <div class="cta-area">
     <app-custom-checkbox formControlName="fullTimeOnly">
       <div>Full Time Only</div>
     </app-custom-checkbox>
-    <button appStyledButton>Search</button>
+    <button [disabled]="data.fg.pristine" appStyledButton>Search</button>
   </div>
 </form>

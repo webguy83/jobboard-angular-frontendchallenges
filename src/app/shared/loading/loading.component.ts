@@ -16,7 +16,6 @@ import { LoadingService } from './loading.service';
   styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent implements OnInit {
-  @Input() routing = false;
   @Input() detectRoutingOngoing = false;
 
   constructor(public loadingService: LoadingService, private router: Router) {}

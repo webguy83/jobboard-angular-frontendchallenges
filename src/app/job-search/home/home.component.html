@@ -24,12 +24,12 @@
       ></app-job-card>
     </ng-container>
   </div>
-  <app-loading></app-loading>
+  <app-loading class="loader"></app-loading>
 </div>
 <button
+  *ngIf="!(hideLoadBtn$ | async)"
   appStyledButton
   (click)="onLoadMoreBtnClick()"
-  *ngIf="!(hideLoadMoreBtn$ | async)"
 >
   Load More
 </button>
