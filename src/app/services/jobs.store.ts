@@ -6,6 +6,7 @@ import {
   map,
   Observable,
   ReplaySubject,
+  take,
   tap,
 } from 'rxjs';
 import { LoadingService } from '../shared/loading/loading.service';
@@ -20,13 +21,25 @@ export class JobsStore {
   private limitSubject = new BehaviorSubject(false);
   jobs$: Observable<Job[]> = this.subject.asObservable();
   jobLimitReached$: Observable<boolean> = this.limitSubject.asObservable();
-  allCombinedJobs$: Observable<Job[]> = this.jobs$;
 
   constructor(
     private loadingService: LoadingService,
     private jobsService: JobsService
   ) {
     this.loadInitialJobs();
+  }
+
+  getFilteredJobs(data: any) {
+    return this.jobsService.queryFilteredJobs(data).pipe(
+      tap((filteredJobs) => {
+        if (filteredJobs.length < this.jobsService.limit) {
+          this.limitSubject.next(true);
+        } else {
+          this.limitSubject.next(false);
+        }
+        this.subject.next(filteredJobs);
+      })
+    );
   }
 
   private loadInitialJobs() {
@@ -43,12 +56,14 @@ export class JobsStore {
       concatMap((lastJobId) => this.jobsService.getAdditionalJobs(lastJobId))
     ) as Observable<Job[]>;
 
-    this.allCombinedJobs$ = combineLatest([this.jobs$, latestJobs$]).pipe(
-      map(([allJobs, latestJobs]) => [...allJobs, ...latestJobs])
+    return combineLatest([this.jobs$, latestJobs$]).pipe(
+      map(([initJobs, latestJobs]) => [...initJobs, ...latestJobs]),
+      take(1),
+      tap((jobs) => {
+        this.subject.next(jobs);
+        this.limitSubject.next(true);
+        this.jobsService.limit += 12;
+      })
     );
-
-    this.limitSubject.next(true);
-
-    return latestJobs$;
   }
 }

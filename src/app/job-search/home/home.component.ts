@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  first,
-  last,
-  lastValueFrom,
-  Observable,
-  shareReplay,
-  take,
-} from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { Job } from 'src/app/services/interfaces';
-import { JobsService } from 'src/app/services/jobs.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { JobsStore } from 'src/app/services/jobs.store';
 
@@ -22,6 +14,7 @@ export class HomeComponent implements OnInit {
   jobObservables: Observable<Job[]>[] = [];
   mobileView = false;
   hideLoadBtn$ = this.jobsStore.jobLimitReached$;
+  jobs$ = this.jobsStore.jobs$;
 
   constructor(
     private jobsStore: JobsStore,
@@ -30,24 +23,22 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadJobs();
     this.addBreakPoint();
-  }
-
-  loadJobs() {
-    this.jobObservables.push(
-      this.loadingService.showLoaderUntilCompleted(
-        this.jobsStore.allCombinedJobs$
+    this.loadingService
+      .showLoaderUntilCompleted(
+        this.jobsStore.jobs$.pipe(
+          tap((jobs) => {
+            this.jobObservables = [of(jobs)];
+          })
+        )
       )
-    );
+      .subscribe();
   }
 
   onLoadMoreBtnClick() {
-    this.jobObservables.push(
-      this.loadingService.showLoaderUntilCompleted(
-        this.jobsStore.loadMoreJobs()
-      )
-    );
+    this.loadingService
+      .showLoaderUntilCompleted(this.jobsStore.loadMoreJobs())
+      .subscribe();
   }
 
   addBreakPoint() {

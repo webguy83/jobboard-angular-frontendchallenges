@@ -14,7 +14,15 @@ import {
   DocumentData,
   QueryConstraint,
 } from '@angular/fire/firestore';
-import { concatMap, first, from, map, Observable, shareReplay } from 'rxjs';
+import {
+  concatMap,
+  first,
+  from,
+  map,
+  Observable,
+  shareReplay,
+  tap,
+} from 'rxjs';
 import { FilteredData, Job } from './interfaces';
 
 @Injectable({
@@ -26,7 +34,7 @@ export class JobsService {
   private _limit = 12;
   constructor(private readonly firestore: Firestore) {}
 
-  getFilteredJobs(filteredData: FilteredData) {
+  queryFilteredJobs(filteredData: FilteredData) {
     const queries: QueryConstraint[] = [];
     for (let key of Object.keys(filteredData)) {
       if (key === 'fullTimeOnly' && filteredData[key as keyof FilteredData]) {
@@ -72,7 +80,16 @@ export class JobsService {
   getAdditionalJobs(id: string) {
     const docRef = doc(this.firestore, this._dbTableName, id);
     return from(getDoc(docRef)).pipe(
-      concatMap((lastDocument) => this._queryMoreJobs(lastDocument))
+      concatMap((lastDocument) => this._queryMoreJobs(lastDocument)),
+      tap(() => (this._limit += 12))
     );
+  }
+
+  get limit() {
+    return this._limit;
+  }
+
+  set limit(val: number) {
+    this._limit = val;
   }
 }

@@ -8,7 +8,7 @@
         : ''
     }"
   >
-    <ng-container *ngFor="let jobs$ of jobObservables">
+    <!-- <ng-container *ngFor="let jobs$ of jobObservables">
       <app-job-card
         *ngFor="let job of jobs$ | async"
         [cardData]="{
@@ -22,7 +22,20 @@
           position: job.position
         }"
       ></app-job-card>
-    </ng-container>
+    </ng-container> -->
+    <app-job-card
+      *ngFor="let job of jobs$ | async"
+      [cardData]="{
+        id: job.id,
+        logo: job.logo,
+        logoBackground: job.logoBackground,
+        contract: job.contract,
+        postedAt: job.postedAt,
+        company: job.company,
+        location: job.location,
+        position: job.position
+      }"
+    ></app-job-card>
   </div>
   <app-loading class="loader"></app-loading>
 </div>

@@ -1,9 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { filter, Subscription } from 'rxjs';
-import { JobsService } from 'src/app/services/jobs.service';
+import { filter, tap } from 'rxjs';
+import { JobsStore } from 'src/app/services/jobs.store';
 import { LoadingService } from 'src/app/shared/loading/loading.service';
 import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
 
@@ -12,9 +12,8 @@ import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component'
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss'],
 })
-export class FilterBarComponent implements OnInit, OnDestroy {
+export class FilterBarComponent implements OnInit {
   @HostBinding('class') className = 'filter-bar-container';
-  private _sub: Subscription | undefined;
   searchPlaceHolder = 'Filter by title, companies, expertise...';
   tabletView = false;
   hideInput = false;
@@ -26,26 +25,25 @@ export class FilterBarComponent implements OnInit, OnDestroy {
   });
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private _jobsService: JobsService,
-    private _loadingService: LoadingService,
+    private jobStore: JobsStore,
     private fb: FormBuilder,
     public dialog: MatDialog
   ) {}
-  ngOnDestroy(): void {
-    this._sub?.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.addBreakPoints();
   }
 
   filterBtnClick() {
-    this._sub = this.openFilterModal()
-      .pipe(filter((val) => !!val))
-      .subscribe((val) => {
-        this.filterInputForm.markAsPristine();
-        this._jobsService.getFilteredJobs(val);
-      });
+    this.openFilterModal()
+      .pipe(
+        filter((val) => !!val),
+        tap((val) => {
+          this.filterInputForm.markAsPristine();
+          this.jobStore.getFilteredJobs(val);
+        })
+      )
+      .subscribe();
   }
 
   openFilterModal() {
@@ -66,10 +64,10 @@ export class FilterBarComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     const data = this.filterInputForm.value;
-    const jobs$ = this._jobsService.getFilteredJobs(data);
-    jobs$.subscribe((val) => {
-      this.filterInputForm.markAsPristine();
-    });
+    this.jobStore
+      .getFilteredJobs(data)
+      .pipe(tap(() => this.filterInputForm.markAsPristine()))
+      .subscribe();
   }
 
   addBreakPoints() {
