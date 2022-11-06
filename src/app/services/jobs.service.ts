@@ -43,7 +43,12 @@ export class JobsService {
         queries.push(where(key, '==', filteredData[key as keyof FilteredData]));
       }
     }
-    const q = query(this._colRef, limit(this._limit), ...queries);
+    const q = query(
+      this._colRef,
+      limit(this._limit),
+      ...queries,
+      orderBy('index')
+    );
     const data$ = collectionData(q, {
       idField: 'id',
     }).pipe(first(), shareReplay());

@@ -5,7 +5,6 @@ import {
   concatMap,
   map,
   Observable,
-  ReplaySubject,
   take,
   tap,
 } from 'rxjs';
@@ -17,9 +16,9 @@ import { JobsService } from './jobs.service';
   providedIn: 'root',
 })
 export class JobsStore {
-  private subject = new ReplaySubject<Job[]>();
+  private mainJobSubject = new BehaviorSubject<Job[]>([]);
   private limitSubject = new BehaviorSubject(false);
-  jobs$: Observable<Job[]> = this.subject.asObservable();
+  jobs$: Observable<Job[]> = this.mainJobSubject.asObservable();
   jobLimitReached$: Observable<boolean> = this.limitSubject.asObservable();
 
   constructor(
@@ -37,7 +36,7 @@ export class JobsStore {
         } else {
           this.limitSubject.next(false);
         }
-        this.subject.next(filteredJobs);
+        this.mainJobSubject.next(filteredJobs);
       })
     );
   }
@@ -45,13 +44,13 @@ export class JobsStore {
   private loadInitialJobs() {
     const loadJobs$ = this.jobsService
       .queryJobs()
-      .pipe(tap((jobs) => this.subject.next(jobs)));
+      .pipe(tap((jobs) => this.mainJobSubject.next(jobs)));
 
     this.loadingService.showLoaderUntilCompleted(loadJobs$).subscribe();
   }
 
   loadMoreJobs() {
-    const latestJobs$ = this.subject.pipe(
+    const latestJobs$ = this.mainJobSubject.pipe(
       map((jobs) => jobs[jobs.length - 1].id),
       concatMap((lastJobId) => this.jobsService.getAdditionalJobs(lastJobId))
     ) as Observable<Job[]>;
@@ -60,7 +59,7 @@ export class JobsStore {
       map(([initJobs, latestJobs]) => [...initJobs, ...latestJobs]),
       take(1),
       tap((jobs) => {
-        this.subject.next(jobs);
+        this.mainJobSubject.next(jobs);
         this.limitSubject.next(true);
         this.jobsService.limit += 12;
       })
