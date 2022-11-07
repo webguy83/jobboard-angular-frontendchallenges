@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/job-board-application-built-in-angular-angular-material-and-firebase-1Af-WWRUam)
+- Live Site URL: [Job Board App](https://frontendmentor-devjobs.web.app/)
 
 ## My process
 
@@ -50,5 +50,5 @@ Learned a ton. It's unfortunate Firestore in Firebase has limited query configur
 
 ## Author
 
-- Github - [Curtis](https://github.com/webguy83)
+- Github - [Github](https://github.com/webguy83)
 - Frontend Mentor - [@webguy83](https://www.frontendmentor.io/profile/webguy83)

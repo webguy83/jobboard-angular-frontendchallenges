@@ -31,6 +31,7 @@ label {
   }
 
   .toggle-wrapper {
+    display: block;
     position: relative;
     width: $toggleBgWidth;
     height: $toggleBgHeight;

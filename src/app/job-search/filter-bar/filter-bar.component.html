@@ -44,12 +44,12 @@
   ></app-custom-input>
   <div class="submit-area" *ngIf="!hideInput">
     <app-custom-checkbox formControlName="fullTimeOnly">
-      <div>
+      <span>
         Full Time
         <span [ngStyle]="{ display: tabletView ? 'none' : 'inline' }"
           >Only</span
         >
-      </div>
+      </span>
     </app-custom-checkbox>
     <button
       [disabled]="filterInputForm.pristine"
