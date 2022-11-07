@@ -18,6 +18,10 @@ export class DetailFooterComponent implements OnInit {
     this.addBreakPoint();
   }
 
+  onApplyClick() {
+    alert('Thank you for applying! Good luck! :D');
+  }
+
   addBreakPoint() {
     const tabletPoint = '(min-width: 500.01px) and (max-width: 600px)';
     const mobilePoint = '(max-width: 500px)';

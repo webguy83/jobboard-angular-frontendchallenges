@@ -18,6 +18,10 @@ export class DetailMainComponent implements OnInit {
     this.addBreakPoint();
   }
 
+  onApplyClick() {
+    alert('Thank you for applying! Good luck! :D');
+  }
+
   addBreakPoint() {
     const mobilePoint = '(max-width: 500px)';
     const tabletPoint = '(max-width: 600px)';

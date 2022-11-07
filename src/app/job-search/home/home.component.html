@@ -25,6 +25,7 @@
   <app-loading class="loader"></app-loading>
 </div>
 <button
+  type="button"
   *ngIf="!(hideLoadBtn$ | async)"
   appStyledButton
   (click)="onLoadMoreBtnClick()"

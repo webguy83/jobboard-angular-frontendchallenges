@@ -13,7 +13,9 @@
       <span class="location">{{ job.location }}</span>
     </div>
     <div class="cta">
-      <button appStyledButton>Apply Now</button>
+      <button type="button" (click)="onApplyClick()" appStyledButton>
+        Apply Now
+      </button>
     </div>
   </header>
   <div class="description">{{ job.description }}</div>

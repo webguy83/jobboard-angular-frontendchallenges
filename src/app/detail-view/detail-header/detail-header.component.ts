@@ -17,6 +17,14 @@ export class DetailHeaderComponent implements OnInit {
     return `${companyName.toLowerCase().replace(' ', '')}.com`;
   }
 
+  onCompanyClick() {
+    alert(
+      `This would navigate to www.${this.generateWebsiteStaticText(
+        this.job!.company
+      )}.`
+    );
+  }
+
   ngOnInit(): void {
     this.addBreakPoint();
   }

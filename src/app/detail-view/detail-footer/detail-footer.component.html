@@ -9,6 +9,8 @@
     <p class="info">{{ job.company }}</p>
   </div>
   <div class="cta">
-    <button appStyledButton>Apply Now</button>
+    <button type="button" (click)="onApplyClick()" appStyledButton>
+      Apply Now
+    </button>
   </div>
 </footer>

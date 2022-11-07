@@ -15,6 +15,13 @@
       <h2 class="company-title">{{ job.company }}</h2>
       <p>{{ generateWebsiteStaticText(job.company) }}</p>
     </div>
-    <button appStyledButton class="company-btn">Company Site</button>
+    <button
+      type="button"
+      (click)="onCompanyClick()"
+      appStyledButton
+      class="company-btn"
+    >
+      Company Site
+    </button>
   </div>
 </header>
