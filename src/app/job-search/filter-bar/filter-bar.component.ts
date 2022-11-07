@@ -18,6 +18,7 @@ export class FilterBarComponent implements OnInit, OnDestroy {
   tabletView = false;
   hideInput = false;
   private _querySubscription: Subscription = new Subscription();
+  options: string[] = ['One', 'Two', 'Three'];
 
   filterInputForm = this.fb.group({
     position: [''],

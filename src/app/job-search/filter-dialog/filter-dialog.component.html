@@ -9,6 +9,8 @@
     <app-custom-checkbox formControlName="fullTimeOnly">
       <div>Full Time Only</div>
     </app-custom-checkbox>
-    <button [disabled]="data.fg.pristine" appStyledButton>Search</button>
+    <button type="submit" [disabled]="data.fg.pristine" appStyledButton>
+      Search
+    </button>
   </div>
 </form>

@@ -1,8 +1,4 @@
-<a
-  [routerLink]="['detail', cardData.id]"
-  class="card-container"
-  *ngIf="cardData"
->
+<div class="card-container" *ngIf="cardData">
   <div
     class="logo-container"
     [ngStyle]="{ backgroundColor: cardData.logoBackground }"
@@ -11,6 +7,7 @@
       src="../../../assets/{{ cardData.logo }}"
       [alt]="cardData.company"
       class="icon"
+      aria-label="company icon"
     />
   </div>
   <p class="info">
@@ -20,4 +17,5 @@
   <h3 class="card-position-title">{{ cardData.position }}</h3>
   <p class="info">{{ cardData.company }}</p>
   <span class="location">{{ cardData.location }}</span>
-</a>
+  <a class="link" title="detail" [routerLink]="['detail', cardData.id]"></a>
+</div>

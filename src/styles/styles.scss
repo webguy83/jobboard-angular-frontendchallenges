@@ -14,6 +14,7 @@
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$job-board-light-theme);
+@include mat.autocomplete-theme(light.$job-board-light-theme);
 @include mat.progress-spinner-theme(light.$job-board-light-theme);
 @include mat.dialog-theme(light.$job-board-light-theme);
 @include filterBarTheme.theme(light.$job-board-light-theme);

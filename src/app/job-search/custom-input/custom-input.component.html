@@ -1,5 +1,12 @@
-<img *ngIf="!hideIcon" class="search-icon" [src]="iconUrl" [alt]="icon" />
+<img
+  *ngIf="!hideIcon"
+  class="search-icon"
+  [src]="iconUrl"
+  [alt]="icon"
+  aria-label="icon"
+/>
 <input
+  aria-label="search-field"
   class="search-field"
   type="text"
   [placeholder]="placeholder"

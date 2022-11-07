@@ -6,12 +6,12 @@
   align-items: center;
   position: relative;
   cursor: pointer;
-  user-select: none;
   font-weight: 700;
 }
 
 .checkbox-container input {
   visibility: hidden;
+  width: 5px;
 }
 
 .checkmark {

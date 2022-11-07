@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
     JobSearchRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    MatAutocompleteModule,
   ],
   providers: [LoadingService],
 })
