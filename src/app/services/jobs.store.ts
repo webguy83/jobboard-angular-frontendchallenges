@@ -17,7 +17,7 @@ import { JobsService } from './jobs.service';
 })
 export class JobsStore {
   private mainJobSubject = new BehaviorSubject<Job[]>([]);
-  private limitSubject = new BehaviorSubject(false);
+  private limitSubject = new BehaviorSubject(true);
   jobs$: Observable<Job[]> = this.mainJobSubject.asObservable();
   jobLimitReached$: Observable<boolean> = this.limitSubject.asObservable();
 
